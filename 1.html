@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From Validation </title>
+</head>
+<body>
+    
+    <form>
+        <table border="2">
+            <tr>
+                <td>Name</td>
+                <td><input type="text" id="Name"></td>   
+            </tr>
+             <tr>
+                <td>Email</td>
+                <td><input type="text" id="Email"></td>    
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td> <input type="text" id="Password"></td>       
+            </tr>
+            <tr>
+                <td>confirm password</td>
+                <td> <input type="text" id="confirm-password"></td>       
+            </tr>
+             <tr>
+                <td></td>
+                <td><input type="button" onclick="save()" value="submit"></td>
+            </tr>
+        </table>
+    </form>
+    
+    <style>
+        .container{
+            max-width: 1140px;
+            margin: 0 auto;
+        }
+        .row{
+            display: flex;
+            justify-content: center;
+        }
+        .box{
+            background-color: linear-gradient(90deg, rgba(181,191,161,1) 0%, rgba(110,152,135,1) 100%);
+        }
+        
+    </style>
+</body>
+</html>
+
+<script type="text/javascript">
+
+    const save = () => {
+        var name = document.getElementById('Name').value;
+        var email = document.getElementById('Email').value;
+        var Password = document.getElementById('Password').value;
+        var confirmPassword = document.getElementById('confirm-password').value;
+
+        var format = /\S+@\S+\.\S+/;
+
+        if(!name){
+            alert("Name must be filled out");
+            return false;
+        }
+
+        if(!email){
+            alert("email must be filled out");
+            return false;
+        }else if(!email.match(format)){
+            alert("email is not valid");
+            return false;
+        }
+
+        if(!Password){
+            alert("password must be filled out");
+            return false;
+        }
+
+        if(!confirmPassword){
+            alert("confirmPassword must be filled out");
+            return false;
+        }
+
+        if(confirmPassword != Password){
+            alert("password must be same");
+            return false;
+        }
+
+        if(Password.length > 8 && Password.length < 16){
+
+        }else{
+            alert("minimum 8 and maximum 16 character input");
+            return false;
+        }
+
+        alert("From Submitted Successfully.");
+
+    }
+
+    
+
+
+</script>

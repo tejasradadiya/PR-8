@@ -5,10 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>From Validation </title>
-</head>
-<body>
-    
-    <form>
+   <form>
         <table border="2">
             <tr>
                 <td>Name</td>
@@ -51,55 +48,44 @@
 </html>
 
 <script type="text/javascript">
-
     const save = () => {
-        var name = document.getElementById('Name').value;
-        var email = document.getElementById('Email').value;
-        var Password = document.getElementById('Password').value;
-        var confirmPassword = document.getElementById('confirm-password').value;
+        let name = document.getElementById('name').value;
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
+        let confirmpassword = document.getElementById('confirmpassword').value;
 
-        var format = /\S+@\S+\.\S+/;
-
-        if(!name){
-            alert("Name must be filled out");
-            return false;
+        var letters = /^[A-Za-z]+$/;
+        var mailFormat =  /\S+@\S+\.\S+/;
+        try {
+                if (!name) {
+                    throw "please fill your name";
+                    return false;
+                } else if (!email) {
+                    throw "please fill your email";
+                    return false;
+                } else if (!password) {
+                    throw "please fill your password";
+                    return false;
+                } else if (!confirmpassword) {
+                    throw "please fill your Conform-password";
+                    return false;
+                } else if (password != confirmpassword) {
+                    throw "password and Conform-password are not same";
+                    return false;
+                }else if(!name.match(letters)){ 
+                    throw "Only capital and small words will work in the name of your form";
+                    return false;
+                }else if(!email.match(mailFormat)){
+                    throw "Enter your full email";
+                    return false;
+                }else if(password.length < 6 && password.length < 12){
+                    throw "Enter your long password";
+                    return false;
+                }
         }
-
-        if(!email){
-            alert("email must be filled out");
-            return false;
-        }else if(!email.match(format)){
-            alert("email is not valid");
-            return false;
+        catch (a) {
+            alert(a)
         }
-
-        if(!Password){
-            alert("password must be filled out");
-            return false;
-        }
-
-        if(!confirmPassword){
-            alert("confirmPassword must be filled out");
-            return false;
-        }
-
-        if(confirmPassword != Password){
-            alert("password must be same");
-            return false;
-        }
-
-        if(Password.length > 8 && Password.length < 16){
-
-        }else{
-            alert("minimum 8 and maximum 16 character input");
-            return false;
-        }
-
-        alert("From Submitted Successfully.");
-
     }
-
-    
-
-
+   
 </script>
